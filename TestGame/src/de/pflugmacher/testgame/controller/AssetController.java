@@ -1,13 +1,7 @@
 package de.pflugmacher.testgame.controller;
 
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FilenameFilter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 
 import javax.imageio.ImageIO;
@@ -15,36 +9,30 @@ import javax.imageio.ImageIO;
 public class AssetController {
 	public HashMap<String, BufferedImage> images;
 	public HashMap<String, byte[]> sounds;
+	private String[] imageResources = {
+			"asteroid.png", "galaxy_bg.png", "shield.png", "ship.png",
+			"blueLaser1.png", "blueLaser2.png",	"blueLaser3.png", "blueLaser4.png",	"blueLaser5.png", "blueLaser6.png",
+			"yellowLaser1.png", "yellowLaser2.png", "yellowLaser3.png", "yellowLaser4.png", "yellowLaser5.png", "yellowLaser6.png", 
+			"greenLaser1.png", "greenLaser2.png", "greenLaser3.png", "greenLaser4.png", "greenLaser5.png", "greenLaser6.png", 
+			"lightblueLaser1.png", "lightblueLaser2.png", "lightblueLaser3.png", "lightblueLaser4.png", "lightblueLaser5.png", "lightblueLaser6.png",
+			"pinkLaser1.png", "pinkLaser2.png", "pinkLaser3.png", "pinkLaser4.png", "pinkLaser5.png", "pinkLaser6.png", 
+			"redLaser1.png", "redLaser2.png", "redLaser3.png", "redLaser4.png", "redLaser5.png", "redLaser6.png", 
+	};
 	
 	public AssetController() {
 		images = new HashMap<String, BufferedImage>();
 		sounds = new HashMap<String, byte[]>();
 		loadImages();
 	}
-	
+		
 	private void loadImages() {
-		File imageFolder = new File("assets/images/");
-		String[] folders = imageFolder.list(new FilenameFilter() {
-			  @Override
-			  public boolean accept(File current, String name) {
-			    return new File(current, name).isDirectory();
-			  }
-			});
-		ArrayList<File> imageFiles = new ArrayList<File>(Arrays.asList(imageFolder.listFiles()));
-		for (String folder: folders) {
-			imageFiles.addAll(Arrays.asList(new File("assets/images/" + folder + "/").listFiles()));
-		}
-		for (File ImageFile: imageFiles) {
-			if (ImageFile.isFile()) {		
-				String imagename = ImageFile.getName().split("[.]")[0];
-				try {
-					BufferedImage imageBuff = ImageIO.read(new FileInputStream(ImageFile));
-					images.put(imagename, imageBuff);
-				} catch (FileNotFoundException e) {
-					e.printStackTrace();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
+		for (String imageResource: imageResources) {
+			try {
+			BufferedImage image = ImageIO.read(getClass().getResourceAsStream("/resources/images/" + imageResource));
+			String imageName = imageResource.split("[.]")[0];
+			images.put(imageName, image);
+			} catch (IOException e) {
+				e.printStackTrace();
 			}
 		}
 	}
