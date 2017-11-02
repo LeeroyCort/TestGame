@@ -32,7 +32,9 @@ public class Asteroid extends Actor {
 	public void tick(double delta) {
 		HashMap<Actor, CollisionState> collisions = CollisionController.getCollison(this);
 		if (collisions.containsValue(CollisionState.Hit)) {
-			this.isGarbadge = this.lifePoints <= 0;
+			if (this.lifePoints <= 0) {
+				this.isGarbadge = true;
+			}
 		} else if (collisions.containsValue(CollisionState.CollisionInner)) {
 			this.doesDamage = true;
 			this.isGarbadge = this.hitSuccsess;
