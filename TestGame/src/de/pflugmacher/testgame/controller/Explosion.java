@@ -13,6 +13,7 @@ public class Explosion extends Animation {
 		this.y = parent.y;
 		this.delay = delay;
 		this.size_x = this.size_y = (parent.size_x > parent.size_y ? parent.size_x : parent.size_y);
+		this.animation = animation;
 	}
 
 	public void render(Graphics2D g) {
