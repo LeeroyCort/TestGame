@@ -89,6 +89,7 @@ public class TestGame {
 	
 	private void initGame() {
 		actors = new ArrayList<Actor>();
+		animations = new ArrayList<Animation>();
 		hudElements = new ArrayList<HUDElement>();
 		assetController = new AssetController();
 		randomEvents = new RandomEvents();
