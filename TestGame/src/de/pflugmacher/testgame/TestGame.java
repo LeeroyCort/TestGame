@@ -12,6 +12,7 @@ import javax.swing.JFrame;
 import de.pflugmacher.testgame.controller.AssetController;
 import de.pflugmacher.testgame.controller.KeyController;
 import de.pflugmacher.testgame.model.Actor;
+import de.pflugmacher.testgame.model.Animation;
 import de.pflugmacher.testgame.model.HUDElement;
 
 public class TestGame {
@@ -23,6 +24,7 @@ public class TestGame {
 	public static AssetController assetController;
 	public static ArrayList<Actor> actors;
 	public static ArrayList<HUDElement> hudElements;
+	public static ArrayList<Animation> animations;
 	
 	private RandomEvents randomEvents;
 	private long lastFrame;
@@ -87,6 +89,7 @@ public class TestGame {
 	
 	private void initGame() {
 		actors = new ArrayList<Actor>();
+		animations = new ArrayList<Animation>();
 		hudElements = new ArrayList<HUDElement>();
 		assetController = new AssetController();
 		randomEvents = new RandomEvents();
@@ -120,16 +123,27 @@ public class TestGame {
 	}
 
 	protected void update(double delta) {
-		ArrayList<Actor> garbadge = new ArrayList<Actor>();
+		ArrayList<Actor> garbadgeAc = new ArrayList<Actor>();
 		for(int i = 0; i < actors.size(); i++) {
 
 			Actor a = actors.get(i);
 			a.tick(delta);
 			if (a.isGarbadge || a.x < -200 || a.y < -200 || a.x > window.getWidth() + 200 || a.y > window.getHeight() + 200) {
-				garbadge.add(a);
+				garbadgeAc.add(a);
 			}
 		}
-		actors.removeAll(garbadge);
+		actors.removeAll(garbadgeAc);
+		ArrayList<Animation> garbadgeAn = new ArrayList<Animation>();
+		for(int i = 0; i < animations.size(); i++) {
+
+			Animation a = animations.get(i);
+			a.tick(delta);
+			if (a.isGarbadge || a.x < -200 || a.y < -200 || a.x > window.getWidth() + 200 || a.y > window.getHeight() + 200) {
+				garbadgeAn.add(a);
+			}
+		}
+		animations.removeAll(garbadgeAn);
+		
 		randomEvents.tick(delta);
 
 		for(HUDElement hud: hudElements) {
@@ -150,6 +164,10 @@ public class TestGame {
 		g2d.drawImage(assetController.images.get("galaxy_bg"), 0, 0, window.getWidth(), window.getHeight(), null);
 		
 		for(Actor a: actors) {
+			a.render(g2d);
+		}
+
+		for(Animation a: animations) {
 			a.render(g2d);
 		}
 		

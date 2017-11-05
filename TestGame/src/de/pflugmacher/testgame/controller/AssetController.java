@@ -10,7 +10,7 @@ public class AssetController {
 	public HashMap<String, BufferedImage> images;
 	public HashMap<String, byte[]> sounds;
 	private String[] imageResources = {
-			"asteroid.png", "galaxy_bg.png", "shield.png", "ship.png",
+			"asteroid.png", "galaxy_bg.png", "shield.png", "ship.png", "explosion1.png",
 			"blueLaser1.png", "blueLaser2.png",	"blueLaser3.png", "blueLaser4.png",	"blueLaser5.png", "blueLaser6.png",
 			"yellowLaser1.png", "yellowLaser2.png", "yellowLaser3.png", "yellowLaser4.png", "yellowLaser5.png", "yellowLaser6.png", 
 			"greenLaser1.png", "greenLaser2.png", "greenLaser3.png", "greenLaser4.png", "greenLaser5.png", "greenLaser6.png", 
