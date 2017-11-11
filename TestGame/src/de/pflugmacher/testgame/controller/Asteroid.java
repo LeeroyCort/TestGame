@@ -10,7 +10,7 @@ import de.pflugmacher.testgame.model.Actor;
 import de.pflugmacher.testgame.namelists.ActorType;
 import de.pflugmacher.testgame.namelists.CollisionState;
 
-public class Asteroid extends Actor {
+public class Asteroid extends AiActor {
 	BufferedImage image;
 	double dir_x;
 	double dir_y;
@@ -28,6 +28,7 @@ public class Asteroid extends Actor {
 		this.lifePoints = 50;
 		this.actorType = ActorType.Asteroid;
 		this.damage = 100;
+		movePattern = new LiniarMovement(x,y,speed);
 	}
 	
 	public void tick(double delta) {
@@ -45,9 +46,14 @@ public class Asteroid extends Actor {
 			TestGame.animations.add(new Explosion(ani, size_x , size_x, (int)50, false, this));
 		}
 		
+		this.movePattern.move(delta);
+		this.x=movePattern.currentPos.x;
+		this.y=movePattern.currentPos.y;
+
+		/**
 		this.x += speed * delta * dir_x;
-		this.y += speed * delta * dir_y;
-		
+        this.y += speed * delta * dir_y;
+        */
 	}
 	
 	public void render(Graphics2D g) {
