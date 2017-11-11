@@ -15,7 +15,7 @@ public class RandomEvents {
 	public void tick(double delta) {
 		if (nextEventCounter <= 0) {
 			castEvent();
-			nextEventCounter = rn.nextInt(20) + 500;
+			nextEventCounter = rn.nextInt(5000) + 500;
 		}
 		nextEventCounter -= delta;
 	}
