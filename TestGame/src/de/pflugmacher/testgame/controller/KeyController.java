@@ -41,6 +41,10 @@ public class KeyController implements KeyListener {
 				if (!actions.contains(Controls.Shield))
 				actions.add(Controls.Shield);
 				break;
+			case KeyEvent.VK_Q:
+				if (!actions.contains(Controls.Rocket))
+				actions.add(Controls.Rocket);
+				break;
 			case KeyEvent.VK_ESCAPE:
 				TestGame.Close();
 				break;
@@ -75,6 +79,10 @@ public class KeyController implements KeyListener {
 			case KeyEvent.VK_F:
 				while (actions.contains(Controls.Shield))
 					actions.remove(Controls.Shield);
+				break;
+			case KeyEvent.VK_Q:
+				while (actions.contains(Controls.Rocket))
+					actions.remove(Controls.Rocket);
 				break;
 			default:
 				break;

@@ -28,7 +28,7 @@ public class RandomEvents {
 		int size_y = rn.nextInt(60) + 60;
 		double degrees = x < TestGame.window.getWidth() / 2 ? rn.nextInt(60) + 30 : rn.nextInt(60) + 90;
 		GlobalPosition asteroidGP = new GlobalPosition(x, y, degrees);
-		asteroidGP.step = 1.001 - (((double)(size_x * size_y) - 3000) / 9000);
+		asteroidGP.step = (1.001 - (((double)(size_x * size_y) - 3000) / 9000)) / 2;
 		TestGame.actors.add(new Asteroid(asteroidGP, size_x, size_y));
 	}
 }

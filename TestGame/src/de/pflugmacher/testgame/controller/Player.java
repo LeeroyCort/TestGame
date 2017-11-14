@@ -19,6 +19,7 @@ public class Player extends Actor {
 	int shield_cooldown;
 	int shield_running;
 	int shot_cooldown;
+	int rocket_cooldown;
 	Shield shield;
 	
 	public Player(int size_x, int size_y) {
@@ -64,6 +65,11 @@ public class Player extends Actor {
 			TestGame.actors.add(new Shot(ShotType.RedLaser, this.gp.position.x, this.getPositionY(), 20, 30, 1, this));
 			shot_cooldown = 30;
 		}
+
+		if (TestGame.keyController.actions.contains(Controls.Rocket) && rocket_cooldown == 0) {
+			TestGame.actors.add(new PlasmaRocket(50, 50, this.gp.position));
+			rocket_cooldown = 10000;
+		}
 		
 		if (shield_cooldown != 0) {
 			if (shield_cooldown > 0) {
@@ -77,6 +83,13 @@ public class Player extends Actor {
 				shot_cooldown -= delta;
 			} else {
 				shot_cooldown = 0;
+			}
+		}
+		if (rocket_cooldown != 0) {
+			if (rocket_cooldown > 0) {
+				rocket_cooldown -= delta;
+			} else {
+				rocket_cooldown = 0;
 			}
 		}
 	}

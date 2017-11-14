@@ -16,7 +16,18 @@ public abstract class Animation {
 	public int focusIndex = 0;
 	
 	public void tick(double delta) {
-		
+		next_change -= delta;
+		if (next_change <= 0) {
+			next_change = delay;
+			focusIndex++;
+			if (focusIndex == animation.length) {
+				if (loop) {
+					focusIndex = 0;
+				} else {
+					isGarbadge = true;
+				}
+			}
+		}
 	}
 
 	public void render(Graphics2D g) {
