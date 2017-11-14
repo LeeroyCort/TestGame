@@ -7,27 +7,21 @@ import java.util.HashMap;
 import de.pflugmacher.testgame.TestGame;
 import de.pflugmacher.testgame.Utils;
 import de.pflugmacher.testgame.model.Actor;
+import de.pflugmacher.testgame.model.GlobalPosition;
 import de.pflugmacher.testgame.namelists.ActorType;
 import de.pflugmacher.testgame.namelists.CollisionState;
 
 public class Asteroid extends Actor {
 	BufferedImage image;
-	double dir_x;
-	double dir_y;
-	double speed;
-	public Asteroid(double x, double y, int size_x, int size_y, double dir_x, double dir_y, double speed) {
+	public Asteroid(GlobalPosition gp, int size_x, int size_y) {
 		this.size_x = size_x;
 		this.size_y = size_y;
-		this.x = x;
-		this.y = y;
+		this.gp = gp;
 		image = TestGame.assetController.images.get("asteroid");
 		this.isHittable = true;
-		this.dir_x = dir_x;
-		this.dir_y = dir_y;
-		this.speed = speed;
-		this.lifePoints = 50;
+		this.lifePoints = (size_x * size_y) / 100;
 		this.actorType = ActorType.Asteroid;
-		this.damage = 100;
+		this.damage = (size_x * size_y) / 100;
 	}
 	
 	public void tick(double delta) {
@@ -44,9 +38,8 @@ public class Asteroid extends Actor {
 			BufferedImage[] ani = Utils.CutImage(TestGame.assetController.images.get("explosion1"), 4, 4);
 			TestGame.animations.add(new Explosion(ani, size_x , size_x, (int)50, false, this));
 		}
-		
-		this.x += speed * delta * dir_x;
-		this.y += speed * delta * dir_y;
+
+		this.gp.goStep(delta);
 		
 	}
 	

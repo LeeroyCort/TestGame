@@ -5,8 +5,7 @@ import java.awt.image.BufferedImage;
 
 public abstract class Animation {
 	public BufferedImage[] animation;
-	public double x;
-	public double y;
+	public GlobalPosition gp;
 	public int size_x;
 	public int size_y;
 	public double delay;
@@ -25,10 +24,10 @@ public abstract class Animation {
 	}
 
 	public double getPositionX() {
-		return x - (size_x / 2);
+		return gp.position.x - (size_x / 2);
 	}
 	
 	public double getPositionY() {
-		return y - (size_y / 2);
+		return gp.position.y - (size_y / 2);
 	}
 }

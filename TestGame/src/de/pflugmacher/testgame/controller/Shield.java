@@ -5,6 +5,7 @@ import java.awt.image.BufferedImage;
 
 import de.pflugmacher.testgame.TestGame;
 import de.pflugmacher.testgame.model.Actor;
+import de.pflugmacher.testgame.model.GlobalPosition;
 
 public class Shield extends Actor {
 
@@ -21,6 +22,7 @@ public class Shield extends Actor {
 		this.image = TestGame.assetController.images.get("shield");
 		this.lifePoints = 1000;
 		this.isHittable = true;
+		this.gp = new GlobalPosition();
 	}
 
 	public void tick(double delta) {
@@ -28,11 +30,11 @@ public class Shield extends Actor {
 			this.isGarbadge = true;
 		}
 		lifetime -= (int)delta;
-		this.x = parent.x;
-		this.y = parent.y;
+		this.gp.position.x = parent.gp.position.x;
+		this.gp.position.y = parent.gp.position.y;
 	}
 	
 	public void render(Graphics2D g) {
-		g.drawImage(image, (int)x - (size_x / 2), (int)y - (size_y / 2), size_x, size_y, null);
+		g.drawImage(image, (int)gp.position.x - (size_x / 2), (int)gp.position.y - (size_y / 2), size_x, size_y, null);
 	}
 }
