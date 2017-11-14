@@ -128,7 +128,7 @@ public class TestGame {
 
 			Actor a = actors.get(i);
 			a.tick(delta);
-			if (a.isGarbadge || a.x < -200 || a.y < -200 || a.x > window.getWidth() + 200 || a.y > window.getHeight() + 200) {
+			if (a.isGarbadge || a.gp.position.x < -200 || a.gp.position.y < -200 || a.gp.position.x > window.getWidth() + 200 || a.gp.position.y > window.getHeight() + 200) {
 				garbadgeAc.add(a);
 			}
 		}
@@ -138,7 +138,7 @@ public class TestGame {
 
 			Animation a = animations.get(i);
 			a.tick(delta);
-			if (a.isGarbadge || a.x < -200 || a.y < -200 || a.x > window.getWidth() + 200 || a.y > window.getHeight() + 200) {
+			if (a.isGarbadge || a.gp.position.x < -200 || a.gp.position.y < -200 || a.gp.position.x > window.getWidth() + 200 || a.gp.position.y > window.getHeight() + 200) {
 				garbadgeAn.add(a);
 			}
 		}

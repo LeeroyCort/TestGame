@@ -3,6 +3,7 @@ package de.pflugmacher.testgame;
 import java.util.Random;
 
 import de.pflugmacher.testgame.controller.Asteroid;
+import de.pflugmacher.testgame.model.GlobalPosition;
 
 public class RandomEvents {
 	double nextEventCounter;
@@ -25,9 +26,9 @@ public class RandomEvents {
 		double y = 0;
 		int size_x = rn.nextInt(50) + 50;
 		int size_y = rn.nextInt(60) + 60;
-		double dir_x = y < TestGame.window.getWidth() / 2 ? rn.nextDouble() : rn.nextDouble() * -1 ;
-		double dir_y = rn.nextDouble();
-		double speed = rn.nextDouble() - 0.2;
-		TestGame.actors.add(new Asteroid(x, y, size_x, size_y, dir_x, dir_y, speed));
+		double degrees = x < TestGame.window.getWidth() / 2 ? rn.nextInt(60) + 30 : rn.nextInt(60) + 90;
+		GlobalPosition asteroidGP = new GlobalPosition(x, y, degrees);
+		asteroidGP.step = 1.001 - (((double)(size_x * size_y) - 3000) / 9000);
+		TestGame.actors.add(new Asteroid(asteroidGP, size_x, size_y));
 	}
 }

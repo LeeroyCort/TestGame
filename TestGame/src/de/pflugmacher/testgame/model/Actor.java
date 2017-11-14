@@ -5,9 +5,7 @@ import java.awt.Graphics2D;
 import de.pflugmacher.testgame.namelists.ActorType;
 
 public abstract class Actor {
-
-	public double x;
-	public double y;
+	public GlobalPosition gp;
 	public int size_x;
 	public int size_y;
 	public boolean isGarbadge = false;
@@ -28,10 +26,10 @@ public abstract class Actor {
 	}
 	
 	public double getPositionX() {
-		return x - (size_x / 2);
+		return gp.position.x - (size_x / 2);
 	}
 	
 	public double getPositionY() {
-		return y - (size_y / 2);
+		return gp.position.y - (size_y / 2);
 	}
 }

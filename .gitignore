@@ -1,5 +1,6 @@
-.metadata/
 TestGame/.classpath
 TestGame/.project
-TestGame/bin/
+.metadata/
 .recommenders/
+TestGame/bin
+*.class

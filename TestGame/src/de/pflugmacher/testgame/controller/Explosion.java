@@ -9,8 +9,7 @@ import de.pflugmacher.testgame.model.Animation;
 public class Explosion extends Animation {
 
 	public Explosion(BufferedImage[] animation, int size_x, int size_y, double delay, boolean loop, Actor parent) {
-		this.x = parent.x;
-		this.y = parent.y;
+		this.gp = parent.gp;
 		this.delay = delay;
 		this.size_x = this.size_y = (parent.size_x > parent.size_y ? parent.size_x : parent.size_y);
 		this.animation = animation;
