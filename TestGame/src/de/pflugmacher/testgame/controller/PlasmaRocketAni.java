@@ -26,5 +26,6 @@ public class PlasmaRocketAni extends Animation {
 		if (parent.isGarbadge) {
 			this.isGarbadge = true;
 		}
+		super.tick(delta);
 	}
 }
