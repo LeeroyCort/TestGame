@@ -6,5 +6,6 @@ public enum Controls {
 	Right,
 	Left,
 	Shield,
-	Shot
+	Shot,
+	Rocket
 }

@@ -17,6 +17,7 @@ public class AssetController {
 			"lightblueLaser1.png", "lightblueLaser2.png", "lightblueLaser3.png", "lightblueLaser4.png", "lightblueLaser5.png", "lightblueLaser6.png",
 			"pinkLaser1.png", "pinkLaser2.png", "pinkLaser3.png", "pinkLaser4.png", "pinkLaser5.png", "pinkLaser6.png", 
 			"redLaser1.png", "redLaser2.png", "redLaser3.png", "redLaser4.png", "redLaser5.png", "redLaser6.png", 
+			"greenEnergyBall.png", "orangeEnergyBall.png", "pinkEnergyBall.png", "redEnergyBall.png", "yellowEnergyBall.png"
 	};
 	
 	public AssetController() {
