@@ -67,8 +67,9 @@ public class Player extends Actor {
 		}
 
 		if (TestGame.keyController.actions.contains(Controls.Rocket) && rocket_cooldown == 0) {
-			TestGame.actors.add(new PlasmaRocket(50, 50, this.gp.position));
-			rocket_cooldown = 10000;
+			TestGame.actors.add(new PlasmaRocket(50, 50, 90.0, true, this));
+			TestGame.actors.add(new PlasmaRocket(50, 50, -90.0, false, this));
+			rocket_cooldown = 1000;
 		}
 		
 		if (shield_cooldown != 0) {

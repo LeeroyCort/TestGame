@@ -15,9 +15,16 @@ public class PlasmaRocketAni extends Animation {
 		this.size_y = parent.size_y;
 		this.animation = animation;
 		this.loop = loop;
+		this.parent = parent;
 	}
 
 	public void render(Graphics2D g) {
 		g.drawImage(animation[focusIndex], (int)getPositionX(), (int)getPositionY(), size_x, size_y, null);
+	}
+	
+	public void tick(double delta) {
+		if (parent.isGarbadge) {
+			this.isGarbadge = true;
+		}
 	}
 }
