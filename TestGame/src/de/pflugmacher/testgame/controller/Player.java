@@ -4,6 +4,8 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.util.HashMap;
 
+import javax.sound.sampled.Clip;
+
 import de.pflugmacher.testgame.TestGame;
 import de.pflugmacher.testgame.model.Actor;
 import de.pflugmacher.testgame.model.GlobalPosition;
@@ -21,6 +23,8 @@ public class Player extends Actor {
 	int shot_cooldown;
 	int rocket_cooldown;
 	Shield shield;
+	AudioController laser;
+	AudioController plasma;
 	
 	public Player(int size_x, int size_y) {
 		this.image = TestGame.assetController.images.get("ship");
@@ -32,6 +36,8 @@ public class Player extends Actor {
 		this.shot_cooldown = 0;
 		this.isHittable = true;
 		this.actorType = ActorType.Player;
+		this.laser = new AudioController(TestGame.assetController.sounds.get("laser_burst"), -10f);
+		this.plasma = new AudioController(TestGame.assetController.sounds.get("plasma"), -10f);
 	}
 
 	@Override
@@ -63,12 +69,18 @@ public class Player extends Actor {
 			TestGame.actors.add(new Shot(ShotType.BlueLaser, this.gp.position.x - 20, this.getPositionY(), 20, 20, 1, this));
 			TestGame.actors.add(new Shot(ShotType.BlueLaser, this.gp.position.x + 20, this.getPositionY(), 20, 20, 1, this));
 			TestGame.actors.add(new Shot(ShotType.RedLaser, this.gp.position.x, this.getPositionY(), 20, 30, 1, this));
-			shot_cooldown = 30;
+			if (!laser.isRunning()) {
+				laser.loop(Clip.LOOP_CONTINUOUSLY, 10000, 10000);
+			}
+			shot_cooldown = 100;
+		} else if (!TestGame.keyController.actions.contains(Controls.Shot) && laser.isRunning()) {
+			laser.stopPlaying();
 		}
 
 		if (TestGame.keyController.actions.contains(Controls.Rocket) && rocket_cooldown == 0) {
 			TestGame.actors.add(new PlasmaRocket(50, 50, 90.0, true, this));
 			TestGame.actors.add(new PlasmaRocket(50, 50, -90.0, false, this));
+			plasma.playSound();
 			rocket_cooldown = 1000;
 		}
 		

@@ -24,7 +24,7 @@ public class Shot extends Actor {
 		this.size_y = size_y;
 		this.shotType = shotType;
 		this.image = getImage();
-		this.damage = 1;
+		this.damage = 3;
 		this.actorType = ActorType.Shot;
 	}
 

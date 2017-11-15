@@ -12,23 +12,23 @@ public class Direction {
 	}
 	
 	public Direction(double degrees) {
-		glob_degrees = (degrees % 360) * -1;
+		glob_degrees = degrees % 360;
 	}
 	
 	public void changeDegreesFromCurrent(double degrees, boolean right) {
 		if (right) {
-			glob_degrees -= (degrees % 360) * -1;
+			glob_degrees -= degrees % 360;
 		} else  {
-			glob_degrees += (degrees % 360) * -1;
+			glob_degrees += degrees % 360;
 		}		
 	}
 	
 	public void changeDegreesFromCurrent(double degrees) {
-		glob_degrees += (degrees % 360) * -1;
+		glob_degrees += degrees % 360;
 	}
 
 	public void changeDegreesFromGlobal(double degrees) {
-		glob_degrees = (degrees % 360) * -1;
+		glob_degrees = degrees % 360;
 	}
 	
 	public double getDegrees() {
@@ -48,8 +48,8 @@ public class Direction {
 				changeDegreesFromCurrent(curveAngle / (path_length / step));
 			}
 		}
-		pos.x += Math.cos(Math.toRadians(glob_degrees)) * step;
-		pos.y += Math.sin(Math.toRadians(glob_degrees)) * step;
+		pos.x += Math.cos(Math.toRadians(glob_degrees * -1)) * step;
+		pos.y += Math.sin(Math.toRadians(glob_degrees * -1)) * step;
 		return pos;
 	}
 	

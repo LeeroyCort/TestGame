@@ -2,6 +2,7 @@ package de.pflugmacher.testgame.controller;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 
 import javax.imageio.ImageIO;
@@ -19,11 +20,15 @@ public class AssetController {
 			"redLaser1.png", "redLaser2.png", "redLaser3.png", "redLaser4.png", "redLaser5.png", "redLaser6.png", 
 			"greenEnergyBall.png", "orangeEnergyBall.png", "pinkEnergyBall.png", "redEnergyBall.png", "yellowEnergyBall.png"
 	};
+	private String[] soundResources = {
+			"laser.wav", "laser_burst.wav", "plasma.wav"
+	};
 	
 	public AssetController() {
 		images = new HashMap<String, BufferedImage>();
 		sounds = new HashMap<String, byte[]>();
 		loadImages();
+		loadSounds();
 	}
 		
 	private void loadImages() {
@@ -32,6 +37,20 @@ public class AssetController {
 			BufferedImage image = ImageIO.read(getClass().getResourceAsStream("/resources/images/" + imageResource));
 			String imageName = imageResource.split("[.]")[0];
 			images.put(imageName, image);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	private void loadSounds() {
+		for (String soundResource: soundResources) {
+			try {
+				InputStream stream = getClass().getResourceAsStream("/resources/sounds/" + soundResource);
+				byte[] sound = new byte[stream.available()];
+				stream.read(sound);
+				String soundName = soundResource.split("[.]")[0];
+				sounds.put(soundName, sound);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
