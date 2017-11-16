@@ -12,6 +12,7 @@ import de.pflugmacher.testgame.namelists.CollisionState;
 
 public class Asteroid extends Actor {
 	BufferedImage image;
+	AudioController boom;
 	public Asteroid(GlobalPosition gp, int size_x, int size_y) {
 		this.size_x = size_x;
 		this.size_y = size_y;
@@ -21,6 +22,7 @@ public class Asteroid extends Actor {
 		this.lifePoints = (size_x * size_y) / 100;
 		this.actorType = ActorType.Asteroid;
 		this.damage = (size_x * size_y) / 100;
+		this.boom = new AudioController(TestGame.assetController.sounds.get("Explosion"), -5.0f);
 	}
 	
 	public void tick(double delta) {
@@ -35,6 +37,7 @@ public class Asteroid extends Actor {
 		}
 		if (this.isGarbadge) {
 			TestGame.animations.add(new Explosion(TestGame.assetController.animations.get("explosion1"), size_x , size_x, (int)50, false, this));
+			this.boom.playSound();
 		}
 
 		this.gp.goStep(delta);

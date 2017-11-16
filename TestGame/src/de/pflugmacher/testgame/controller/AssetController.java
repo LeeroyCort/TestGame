@@ -25,7 +25,7 @@ public class AssetController {
 			"redLaser1.png", "redLaser2.png", "redLaser3.png", "redLaser4.png", "redLaser5.png", "redLaser6.png", 
 	};
 	private String[] soundResources = {
-			"laser.wav", "laser_burst.wav", "plasma.wav"
+			"laser.wav", "laser_burst.wav", "plasma.wav", "Explosion.wav", "muffledExplosion.wav"
 	};
 
 	private ArrayList<AnimationResource> animationResources;

@@ -13,6 +13,7 @@ import de.pflugmacher.testgame.namelists.ShotType;
 public class Shot extends Actor {
 	BufferedImage image;
 	ShotType shotType; 
+	AudioController boom;
 	
 	public Shot(ShotType shotType, double x, double y, int size_x, int size_y, double speed, Actor parent) {
 		this.isHittable = true;
@@ -26,11 +27,13 @@ public class Shot extends Actor {
 		this.image = getImage();
 		this.damage = 3;
 		this.actorType = ActorType.Shot;
+		this.boom = new AudioController(TestGame.assetController.sounds.get("muffledExplosion"), -5.0f);
 	}
 
 	public void tick(double delta) {
 		if (this.hitSuccsess) {
 			TestGame.animations.add(new Explosion(TestGame.assetController.animations.get("explosion2"), size_x , size_x, (int)50, false, this));
+			this.boom.playSound();
 			this.isGarbadge = true;
 		} else {
 			this.gp.goStep(delta);
