@@ -30,6 +30,7 @@ public class Shot extends Actor {
 
 	public void tick(double delta) {
 		if (this.hitSuccsess) {
+			TestGame.animations.add(new Explosion(TestGame.assetController.animations.get("explosion2"), size_x , size_x, (int)50, false, this));
 			this.isGarbadge = true;
 		} else {
 			this.gp.goStep(delta);

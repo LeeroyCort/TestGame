@@ -5,7 +5,6 @@ import java.awt.image.BufferedImage;
 import java.util.HashMap;
 
 import de.pflugmacher.testgame.TestGame;
-import de.pflugmacher.testgame.Utils;
 import de.pflugmacher.testgame.model.Actor;
 import de.pflugmacher.testgame.model.GlobalPosition;
 import de.pflugmacher.testgame.namelists.ActorType;
@@ -35,8 +34,7 @@ public class Asteroid extends Actor {
 			this.isGarbadge = this.hitSuccsess;
 		}
 		if (this.isGarbadge) {
-			BufferedImage[] ani = Utils.CutImage(TestGame.assetController.images.get("explosion1"), 4, 4);
-			TestGame.animations.add(new Explosion(ani, size_x , size_x, (int)50, false, this));
+			TestGame.animations.add(new Explosion(TestGame.assetController.animations.get("explosion1"), size_x , size_x, (int)50, false, this));
 		}
 
 		this.gp.goStep(delta);

@@ -3,7 +3,6 @@ package de.pflugmacher.testgame.controller;
 import java.awt.image.BufferedImage;
 
 import de.pflugmacher.testgame.TestGame;
-import de.pflugmacher.testgame.Utils;
 import de.pflugmacher.testgame.model.Actor;
 import de.pflugmacher.testgame.model.GlobalPosition;
 
@@ -22,8 +21,7 @@ public class PlasmaRocket extends Actor {
 		this.doesDamage = true;
 		this.damage = 50;
 		this.isHittable = true;
-		animation = Utils.CutImage(TestGame.assetController.images.get("pinkEnergyBall"), 4, 8);
-		this.plasmarocket = new PlasmaRocketAni(animation, (int)size_x, (int)size_y, 50, true, this);
+		this.plasmarocket = new PlasmaRocketAni(TestGame.assetController.animations.get("pinkEnergyBall"), (int)size_x, (int)size_y, 50, true, this);
 		TestGame.animations.add(this.plasmarocket);
 	}
 	
