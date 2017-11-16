@@ -36,8 +36,8 @@ public class Player extends Actor {
 		this.shot_cooldown = 0;
 		this.isHittable = true;
 		this.actorType = ActorType.Player;
-		this.laser = new AudioController(TestGame.assetController.sounds.get("laser_burst"), -10f);
-		this.plasma = new AudioController(TestGame.assetController.sounds.get("plasma"), -10f);
+		this.laser = new AudioController(TestGame.assetController.sounds.get("laser_burst"), -20f);
+		this.plasma = new AudioController(TestGame.assetController.sounds.get("plasma"), -8f);
 		TestGame.animations.add(new Thruster(this));
 	}
 
