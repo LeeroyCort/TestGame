@@ -38,6 +38,7 @@ public class Player extends Actor {
 		this.actorType = ActorType.Player;
 		this.laser = new AudioController(TestGame.assetController.sounds.get("laser_burst"), -10f);
 		this.plasma = new AudioController(TestGame.assetController.sounds.get("plasma"), -10f);
+		TestGame.animations.add(new Thruster(this));
 	}
 
 	@Override
