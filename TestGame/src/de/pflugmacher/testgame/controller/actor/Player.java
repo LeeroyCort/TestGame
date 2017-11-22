@@ -1,4 +1,4 @@
-package de.pflugmacher.testgame.controller;
+package de.pflugmacher.testgame.controller.actor;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
@@ -7,6 +7,8 @@ import java.util.HashMap;
 import javax.sound.sampled.Clip;
 
 import de.pflugmacher.testgame.TestGame;
+import de.pflugmacher.testgame.controller.AudioController;
+import de.pflugmacher.testgame.controller.CollisionController;
 import de.pflugmacher.testgame.model.Actor;
 import de.pflugmacher.testgame.model.GlobalPosition;
 import de.pflugmacher.testgame.namelists.ActorType;
@@ -38,7 +40,7 @@ public class Player extends Actor {
 		this.actorType = ActorType.Player;
 		this.laser = new AudioController(TestGame.assetController.sounds.get("laser_burst"), -20f);
 		this.plasma = new AudioController(TestGame.assetController.sounds.get("plasma"), -8f);
-		TestGame.animations.add(new Thruster(this));
+		TestGame.animations.add(new Thruster((new int[][]{{22, 8}, {40, 50}}), true, this));
 	}
 
 	@Override
@@ -67,9 +69,9 @@ public class Player extends Actor {
 		}
 
 		if (TestGame.keyController.actions.contains(Controls.Shot) && shot_cooldown == 0) {
-			TestGame.actors.add(new Shot(ShotType.BlueLaser, this.gp.position.x - 20, this.getPositionY(), 20, 20, 1, this));
-			TestGame.actors.add(new Shot(ShotType.BlueLaser, this.gp.position.x + 20, this.getPositionY(), 20, 20, 1, this));
-			TestGame.actors.add(new Shot(ShotType.RedLaser, this.gp.position.x, this.getPositionY(), 20, 30, 1, this));
+			TestGame.actors.add(new Shot(ShotType.BlueLaser, this.gp.position.x - 20, this.getPositionY(), 90, 20, 20, 1, this));
+			TestGame.actors.add(new Shot(ShotType.BlueLaser, this.gp.position.x + 20, this.getPositionY(), 90, 20, 20, 1, this));
+			TestGame.actors.add(new Shot(ShotType.RedLaser, this.gp.position.x, this.getPositionY(), 90, 20, 30, 1, this));
 			if (!laser.isRunning()) {
 				laser.loop(Clip.LOOP_CONTINUOUSLY, 10000, 10000);
 			}

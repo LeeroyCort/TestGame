@@ -1,10 +1,12 @@
-package de.pflugmacher.testgame.controller;
+package de.pflugmacher.testgame.controller.actor;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.util.HashMap;
 
 import de.pflugmacher.testgame.TestGame;
+import de.pflugmacher.testgame.controller.AudioController;
+import de.pflugmacher.testgame.controller.CollisionController;
 import de.pflugmacher.testgame.model.Actor;
 import de.pflugmacher.testgame.model.GlobalPosition;
 import de.pflugmacher.testgame.namelists.ActorType;

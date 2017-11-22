@@ -2,7 +2,7 @@ package de.pflugmacher.testgame;
 
 import java.util.Random;
 
-import de.pflugmacher.testgame.controller.Asteroid;
+import de.pflugmacher.testgame.controller.actor.Asteroid;
 import de.pflugmacher.testgame.model.GlobalPosition;
 
 public class RandomEvents {

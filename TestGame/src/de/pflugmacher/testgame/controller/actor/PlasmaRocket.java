@@ -1,4 +1,4 @@
-package de.pflugmacher.testgame.controller;
+package de.pflugmacher.testgame.controller.actor;
 
 import java.awt.image.BufferedImage;
 

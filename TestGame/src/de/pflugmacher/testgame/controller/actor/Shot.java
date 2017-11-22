@@ -1,10 +1,11 @@
-package de.pflugmacher.testgame.controller;
+package de.pflugmacher.testgame.controller.actor;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.util.Random;
 
 import de.pflugmacher.testgame.TestGame;
+import de.pflugmacher.testgame.controller.AudioController;
 import de.pflugmacher.testgame.model.Actor;
 import de.pflugmacher.testgame.model.GlobalPosition;
 import de.pflugmacher.testgame.namelists.ActorType;
@@ -15,11 +16,11 @@ public class Shot extends Actor {
 	ShotType shotType; 
 	AudioController boom;
 	
-	public Shot(ShotType shotType, double x, double y, int size_x, int size_y, double speed, Actor parent) {
+	public Shot(ShotType shotType, double x, double y, double direction, int size_x, int size_y, double speed, Actor parent) {
 		this.isHittable = true;
 		this.doesDamage = true;
 		this.parent = parent;
-		this.gp = new GlobalPosition(x, y);
+		this.gp = new GlobalPosition(x, y, direction);
 		this.gp.step = speed;
 		this.size_x = size_x;
 		this.size_y = size_y;
