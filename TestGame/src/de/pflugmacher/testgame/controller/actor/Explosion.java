@@ -5,6 +5,7 @@ import java.awt.image.BufferedImage;
 
 import de.pflugmacher.testgame.model.Actor;
 import de.pflugmacher.testgame.model.Animation;
+import de.pflugmacher.testgame.namelists.AnimationType;
 
 public class Explosion extends Animation {
 
@@ -13,6 +14,7 @@ public class Explosion extends Animation {
 		this.delay = delay;
 		this.size_x = this.size_y = (parent.size_x > parent.size_y ? parent.size_x : parent.size_y);
 		this.animation = animation;
+		this.animationType = AnimationType.Explosion;
 	}
 
 	public void render(Graphics2D g) {

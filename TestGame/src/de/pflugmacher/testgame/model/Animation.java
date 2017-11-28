@@ -3,6 +3,8 @@ package de.pflugmacher.testgame.model;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
+import de.pflugmacher.testgame.namelists.AnimationType;
+
 public abstract class Animation {
 	public BufferedImage[] animation;
 	public GlobalPosition gp;
@@ -14,6 +16,7 @@ public abstract class Animation {
 	public boolean loop = false;
 	public boolean isGarbadge = false;
 	public int focusIndex = 0;
+	public AnimationType animationType;
 	
 	public void tick(double delta) {
 		next_change -= delta;

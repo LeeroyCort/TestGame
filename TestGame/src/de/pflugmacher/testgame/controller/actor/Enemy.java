@@ -5,6 +5,7 @@ import java.awt.image.BufferedImage;
 
 import de.pflugmacher.testgame.TestGame;
 import de.pflugmacher.testgame.controller.AudioController;
+import de.pflugmacher.testgame.controller.EnemyMovement;
 import de.pflugmacher.testgame.model.AIActor;
 import de.pflugmacher.testgame.model.GlobalPosition;
 import de.pflugmacher.testgame.namelists.ActorType;
@@ -23,7 +24,9 @@ public class Enemy extends AIActor {
 		this.image = TestGame.assetController.images.get("titantd");
 		this.actorType = ActorType.Enemy;
 		this.lifePoints = 100;
-		this.gp = new GlobalPosition((TestGame.window.getWidth() / 2), 100);
+		this.gp = new GlobalPosition((TestGame.window.getWidth() / 2), 100, 0.0);
+		this.gp.step = 0.2;
+		this.template = new EnemyMovement(gp);
 		this.size_x = size_x;
 		this.size_y = size_y;
 		this.speedbuff = 0.4f;
@@ -40,6 +43,8 @@ public class Enemy extends AIActor {
 			laser.playSound();
 			shot_cooldown = 500;
 		} 
+		
+		template.update(delta);
 
 		if (shot_cooldown != 0) {
 			if (shot_cooldown > 0) {

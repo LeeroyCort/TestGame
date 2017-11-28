@@ -130,6 +130,7 @@ public class TestGame {
 			a.tick(delta);
 			if (a.isGarbadge || a.gp.position.x < -200 || a.gp.position.y < -200 || a.gp.position.x > window.getWidth() + 200 || a.gp.position.y > window.getHeight() + 200) {
 				garbadgeAc.add(a);
+				System.out.println("Actor deleted: " + a.actorType);
 			}
 		}
 		actors.removeAll(garbadgeAc);
@@ -140,6 +141,7 @@ public class TestGame {
 			a.tick(delta);
 			if (a.isGarbadge || a.gp.position.x < -200 || a.gp.position.y < -200 || a.gp.position.x > window.getWidth() + 200 || a.gp.position.y > window.getHeight() + 200) {
 				garbadgeAn.add(a);
+				System.out.println("Animation deleted: " + a.animationType);
 			}
 		}
 		animations.removeAll(garbadgeAn);

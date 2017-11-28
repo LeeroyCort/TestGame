@@ -5,6 +5,7 @@ import java.awt.image.BufferedImage;
 
 import de.pflugmacher.testgame.model.Actor;
 import de.pflugmacher.testgame.model.Animation;
+import de.pflugmacher.testgame.namelists.AnimationType;
 
 public class PlasmaRocketAni extends Animation {
 	
@@ -16,6 +17,7 @@ public class PlasmaRocketAni extends Animation {
 		this.animation = animation;
 		this.loop = loop;
 		this.parent = parent;
+		this.animationType = AnimationType.PlasmaRocket;
 	}
 
 	public void render(Graphics2D g) {

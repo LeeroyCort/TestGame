@@ -1,9 +1,7 @@
 package de.pflugmacher.testgame.namelists;
 
-public enum ActorType {
-	Enemy,
-	Player,
-	Asteroid,
-	Shot,
+public enum AnimationType {
+	Explosion,
+	Thruster,
 	PlasmaRocket
 }

@@ -2,10 +2,9 @@ package de.pflugmacher.testgame.model;
 
 public class Direction {
 	private double glob_degrees;
-	private double traveledPixels;
-	private double path_length;
 	private boolean doCurve = false;
-	private double curveAngle;
+	private Curve curve;
+	private double curveLength;
 	
 	public Direction() {
 		glob_degrees = 90.0;
@@ -39,24 +38,30 @@ public class Direction {
 		return Math.toRadians(glob_degrees);
 	}
 	
+	public boolean isInCurve() {
+		return doCurve;
+	}
+	
 	public Position nextPositon(Position pos, double step) {
 		if (this.doCurve) {
-			if (traveledPixels >= path_length) {
-				this.doCurve = false;
-			} else {
-				this.traveledPixels += step;
-				changeDegreesFromCurrent(curveAngle / (path_length / step));
-			}
+			this.doCurve = !curve.isComplete();
+			pos = curve.next(1 / (curveLength / step));
+		} else {
+			pos.x += Math.cos(Math.toRadians(glob_degrees * -1)) * step;
+			pos.y += Math.sin(Math.toRadians(glob_degrees * -1)) * step;
 		}
-		pos.x += Math.cos(Math.toRadians(glob_degrees * -1)) * step;
-		pos.y += Math.sin(Math.toRadians(glob_degrees * -1)) * step;
 		return pos;
 	}
 	
-	public void doCurve(double degrees, double path_length) {
+	public void doCurve(Position start, Position controllPoint, Position end) {
 		this.doCurve = true;
-		this.traveledPixels = 0;
-		this.path_length = path_length;
-		this.curveAngle = degrees;
+		this.curve = new Curve(start, controllPoint, end);
+		this.curveLength = curve.getCurveLength();
+	}
+
+	public void doCurve(Position start, Position controllPoint, Position controllPoint2, Position end) {
+		this.doCurve = true;
+		this.curve = new Curve(start, controllPoint, controllPoint2, end);
+		this.curveLength = curve.getCurveLength();
 	}
 }

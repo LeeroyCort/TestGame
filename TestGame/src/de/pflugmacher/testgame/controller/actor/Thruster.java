@@ -5,6 +5,7 @@ import java.awt.Graphics2D;
 import de.pflugmacher.testgame.TestGame;
 import de.pflugmacher.testgame.model.Actor;
 import de.pflugmacher.testgame.model.Animation;
+import de.pflugmacher.testgame.namelists.AnimationType;
 
 public class Thruster extends Animation{	
 	public int[][] Offsets;
@@ -27,6 +28,7 @@ public class Thruster extends Animation{
 		this.delay = 100;
 		this.next_change = this.delay;
 		this.Offsets = Offsets;
+		this.animationType = AnimationType.Thruster;
 	}
 
 	public void tick(double delta) {
